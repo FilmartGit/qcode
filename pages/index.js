@@ -1,27 +1,20 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
-import localFont from "next/font/local";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import QRcodeCanvas from "@/components/qrcode";
+import FasadForms from "@/components/fasadForms";
+import { FasadQr } from "@/components/fasadQr";
+import { useRulesQr } from "@/components/useRulesQr";
 
 export default function Home() {
+  const [value, valueQr, changeValue, changeQr ] = useRulesQr();
+
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} flex items-center justify-center h-screen w-full font-[family-name:var(--font-geist-sans)]`}
-    >
-      <div className="border rounded-lg shadow-md p-5 w-96">
-        <div className="">
-          
-        </div>
-      </div>
-    </div>
+    <>
+      <FasadQr>
+        <QRcodeCanvas value={valueQr} />
+      </FasadQr>
+      <FasadForms value={value} changeQr={changeQr} changeValue={changeValue} />
+    </>
   );
 }
